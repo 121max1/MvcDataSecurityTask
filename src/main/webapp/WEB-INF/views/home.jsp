@@ -17,9 +17,11 @@
 
 <div>       <!-- content -->
     <div>    <!-- buttons holder -->
-        <button onclick="location.href='registerClient'">Add client</button>
+        <button onclick="location.href='register/client'">Register client</button>
         <br>
-        <button onclick="location.href='registerDoctor'">Add doctor</button>
+        <button onclick="location.href='register/doctor'">Register doctor</button>
+        <br>
+        <button onclick="location.href='register/admin'">Register admin</button>
         <br>
         <button onclick="location.href='clients'">Get clients</button>
         <br>

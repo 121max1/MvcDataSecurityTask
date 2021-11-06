@@ -4,13 +4,14 @@ import dev.maxshkodin.mvctask.model.Doctor;
 import dev.maxshkodin.mvctask.repository.DoctorRepository;
 import dev.maxshkodin.mvctask.service.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 
-@Service
+@Component
 @Transactional
 public class DoctorServiceImpl implements DoctorService {
 

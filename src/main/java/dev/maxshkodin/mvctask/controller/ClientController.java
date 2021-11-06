@@ -2,6 +2,7 @@ package dev.maxshkodin.mvctask.controller;
 
 import dev.maxshkodin.mvctask.model.Client;
 import dev.maxshkodin.mvctask.service.ClientService;
+import dev.maxshkodin.mvctask.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,25 +17,28 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value="/clients", method=RequestMethod.GET)
     public String getOrderPage(Model model) {
         model.addAttribute("clientList",clientService.getAll());
         return "clients";
     }
 
-    @RequestMapping(value="/registerClient", method=RequestMethod.GET)
+    @RequestMapping(value="/register/client", method=RequestMethod.GET)
     public String getClientRegistrationPage(Model model) {
         return "clientRegistration";
     }
 
-    @RequestMapping(value="/register-new-client", method=RequestMethod.POST)
+    @RequestMapping(value="/register/register-new-client", method=RequestMethod.POST)
     public String addNewClient(@RequestParam(value="fullName") String fullName,
                                @RequestParam(value="phoneNumber") String phoneNumber,
                                @RequestParam(value="email") String email,
                                @RequestParam(value="login") String login,
-                               @RequestParam(value="password") String password) {
+                               @RequestParam(value="password") String password) throws Exception {
         Client client = new Client(fullName,phoneNumber,email,login,password);
-        clientService.add(client);
+        userService.registerUser(client,false);
         return "redirect:/";
     }
 
@@ -59,7 +63,9 @@ public class ClientController {
     @RequestMapping(value="/update/{id}", method=RequestMethod.GET)
     public String updateItem(@PathVariable Integer id, Model model) {
         Client client = clientService.getById(id);
-        model.addAttribute("client",client);
+        Client _client = new Client(client.getFullName(),client.getPhoneNumber(),client.getEmail(),client.getLogin(),client.getPassword());
+        _client.setId(client.getId());
+        model.addAttribute("client",_client);
         return "clientUpdate";
     }
 

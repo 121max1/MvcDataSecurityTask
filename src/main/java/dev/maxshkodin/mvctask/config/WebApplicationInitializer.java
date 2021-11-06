@@ -24,7 +24,7 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
         return new String[]{"/"};
     }
 
-    /*
+
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
@@ -33,5 +33,4 @@ public class WebApplicationInitializer extends AbstractAnnotationConfigDispatche
                 .addFilter("springSecurityFilterChain", "org.springframework.web.filter.DelegatingFilterProxy")
                 .addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
     }
-     */
 }

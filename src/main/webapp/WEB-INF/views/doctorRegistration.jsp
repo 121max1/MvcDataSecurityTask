@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form action = "register-new-doctor" method="POST">
+<form action = "register/register-new-doctor" method="POST">
     <label>Full name:
         <input type="text" name="fullName"><br />
     </label>

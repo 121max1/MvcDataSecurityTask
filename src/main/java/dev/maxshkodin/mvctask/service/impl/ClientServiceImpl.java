@@ -5,12 +5,13 @@ import dev.maxshkodin.mvctask.model.Client;
 import dev.maxshkodin.mvctask.repository.ClientRepository;
 import dev.maxshkodin.mvctask.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Component
 @Transactional
 public class ClientServiceImpl implements ClientService {
 

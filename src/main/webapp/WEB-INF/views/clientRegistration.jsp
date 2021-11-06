@@ -11,7 +11,7 @@
     <title>Client Registration</title>
 </head>
 <body>
-<form action = "register-new-client" method="POST">
+<form action = "register/register-new-client" method="POST">
     <label>Full name:
         <input type="text" name="fullName"><br />
     </label>

@@ -4,11 +4,12 @@ import dev.maxshkodin.mvctask.model.Appointment;
 import dev.maxshkodin.mvctask.repository.AppointmentRepository;
 import dev.maxshkodin.mvctask.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service
+@Component
 @Transactional
 public class AppointmentServiceImpl implements AppointmentService {
 

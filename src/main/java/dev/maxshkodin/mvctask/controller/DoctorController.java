@@ -23,12 +23,12 @@ public class DoctorController {
         return "doctors";
     }
 
-    @RequestMapping(value="/registerDoctor", method= RequestMethod.GET)
+    @RequestMapping(value="/register/doctor", method= RequestMethod.GET)
     public String getClientRegistrationPage(Model model) {
         return "doctorRegistration";
     }
 
-    @RequestMapping(value="/register-new-doctor", method=RequestMethod.POST)
+    @RequestMapping(value="/register/register-new-doctor", method=RequestMethod.POST)
     public String addNewClient(@RequestParam(value="fullName") String fullName,
                                @RequestParam(value="phoneNumber") String phoneNumber,
                                @RequestParam(value="email") String email,

@@ -4,12 +4,13 @@ import dev.maxshkodin.mvctask.model.Client;
 import dev.maxshkodin.mvctask.model.Doctor;
 import dev.maxshkodin.mvctask.model.Record;
 import dev.maxshkodin.mvctask.model.Speciality;
+import org.springframework.stereotype.Service;
 
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 
-
+@Service
 public interface RecordService {
 
     List<GregorianCalendar> GetFreeGapsByDoctorOnDay(Doctor doctor, GregorianCalendar date);
