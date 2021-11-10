@@ -1,12 +1,19 @@
 package dev.maxshkodin.mvctask.controller;
 
 
+import dev.maxshkodin.mvctask.model.Appointment;
+import dev.maxshkodin.mvctask.model.Client;
 import dev.maxshkodin.mvctask.model.Doctor;
 import dev.maxshkodin.mvctask.model.Speciality;
+import dev.maxshkodin.mvctask.service.AppointmentService;
 import dev.maxshkodin.mvctask.service.DoctorService;
+import dev.maxshkodin.mvctask.service.RecordService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,32 +24,57 @@ public class DoctorController {
     @Autowired
     private DoctorService doctorService;
 
+    @Autowired
+    private RecordService recordService;
+
+    @Autowired
+    private AppointmentService appointmentService;
+
     @RequestMapping(value="/doctors", method=RequestMethod.GET)
     public String getOrderPage(Model model) {
         model.addAttribute("doctorsList",doctorService.getAll());
-        return "doctors";
+        return "admin/doctors";
     }
 
-    @RequestMapping(value="/register/doctor", method= RequestMethod.GET)
-    public String getClientRegistrationPage(Model model) {
-        return "doctorRegistration";
+    @PreAuthorize("hasRole('DOCTOR')")
+    @RequestMapping(value="/doctor/doctorMainPage", method=RequestMethod.GET)
+    public String getDoctorMainPage(Model model) {
+        return "doctor/doctorMainPage";
     }
 
-    @RequestMapping(value="/register/register-new-doctor", method=RequestMethod.POST)
-    public String addNewClient(@RequestParam(value="fullName") String fullName,
-                               @RequestParam(value="phoneNumber") String phoneNumber,
-                               @RequestParam(value="email") String email,
-                               @RequestParam(value="login") String login,
-                               @RequestParam(value="password") String password,
-                               @RequestParam(value="speciality") String speciality) {
-
-        Speciality doctorSpeciality = Speciality.valueOf(speciality);
-        Doctor doctor = new Doctor(fullName,phoneNumber,email,login,password,doctorSpeciality);
-        doctorService.add(doctor);
-        return "redirect:/";
+    @PreAuthorize("hasRole('DOCTOR')")
+    @RequestMapping(value="/doctor/viewAppointments", method=RequestMethod.GET)
+    public String getViewAppointmentsPage(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Doctor doctor = doctorService.getDoctorByUsername(username);
+        model.addAttribute("appointments",appointmentService.getByDoctorId(doctor.getId()));
+        return "doctor/viewAppointments";
     }
 
+    @RequestMapping(value="/doctor/viewAppointments/update/{id}", method=RequestMethod.GET)
+    public String getViewUpdateAppointmentPage(@PathVariable Integer id, Model model) {
+        Appointment appointment = appointmentService.getById(id);
+        model.addAttribute("appointment",appointment);
+        return "doctor/updateAppointment";
+    }
 
+    @RequestMapping(value="/doctor/viewAppointments/update/update-appointment", method=RequestMethod.POST)
+    public String updateAppointment(@RequestParam(value = "appointmentId") Integer id,
+                                    @RequestParam(value = "description") String description) {
+        Appointment appointment = appointmentService.getById(id);
+        appointment.setDescription(description);
+        appointmentService.update(appointment);
+        return "redirect:/doctor/doctorMainPage";
+    }
+
+    @PreAuthorize("hasRole('DOCTOR')")
+    @RequestMapping(value="/doctor/viewRecords", method=RequestMethod.GET)
+    public String getViewRecordsPage(Model model) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Doctor doctor = doctorService.getDoctorByUsername(username);
+        model.addAttribute("records",recordService.getRecordsByDoctor(doctor));
+        return "doctor/viewRecords";
+    }
 
 
 }

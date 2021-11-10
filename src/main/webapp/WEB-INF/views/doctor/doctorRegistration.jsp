@@ -2,16 +2,16 @@
   Created by IntelliJ IDEA.
   User: Максим
   Date: 14.10.2021
-  Time: 12:52
+  Time: 13:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Client Registration</title>
+    <title>Title</title>
 </head>
 <body>
-<form action = "register/register-new-client" method="POST">
+<form action = "register-new-doctor" method="POST">
     <label>Full name:
         <input type="text" name="fullName"><br />
     </label>
@@ -21,7 +21,7 @@
     </label>
 
     <label>Email:
-    <input type="text" name="email"><br />
+        <input type="text" name="email"><br />
     </label>
 
     <label>Login:
@@ -30,6 +30,14 @@
 
     <label>Password:
         <input type="password" name="password"><br />
+    </label>
+
+    <label> Speciality
+    <select name = "speciality">
+        <option>THERAPIST</option>
+        <option>DENTIST</option>
+        <option>SURGEON</option>
+    </select>
     </label>
 
     <button type="submit">Register</button>

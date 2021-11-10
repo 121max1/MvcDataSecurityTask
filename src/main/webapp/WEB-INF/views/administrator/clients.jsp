@@ -33,10 +33,10 @@
         <th>Password</th>
         <th>Delete</th>
         <th>Update</th>
-
+        <th>Records</th>
+        <th>Appointments</th>
     </tr>
-    <%
-    %>
+
 
     <c:forEach var="client" items="${clientList}">
         <tr>
@@ -46,10 +46,13 @@
             <td>${client.email}</td>
             <td>${client.login}</td>
             <td>${client.password}</td>
-            <td><button onclick="location.href='delete/${client.id}'">Delete</button></td>
-            <td><button onclick="location.href='update/${client.id}'">Update</button></td>
+            <td><button onclick="location.href='clients/delete/${client.id}'">Delete</button></td>
+            <td><button onclick="location.href='clients/update/${client.id}'">Update</button></td>
+            <td><button onclick="location.href='clients/records/${client.id}'">Records</button></td>
+            <td><button onclick="location.href='clients/appointments/${client.id}'">Appointments</button></td>
         </tr>
     </c:forEach>
 </table>
+<button onclick="location.href='adminMainPage'">back</button>
 </body>
 </html>

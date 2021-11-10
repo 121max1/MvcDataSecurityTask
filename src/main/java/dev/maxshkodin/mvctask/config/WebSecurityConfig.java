@@ -2,6 +2,7 @@ package dev.maxshkodin.mvctask.config;
 
 import dev.maxshkodin.mvctask.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,7 +19,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final UserService userService;
+    @Autowired
+    private  UserService userService;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -38,9 +40,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/register/*", "/access/denied", "/clients").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/", "/register/*", "/access/denied", "/clients", "/register/register-new-client","/register/register-new-doctor","/register/register-new-admin","/register/admin").permitAll()
+                .antMatchers("/administrator/**").hasRole("ADMIN")
+                .antMatchers("/client/**").hasRole("CLIENT")
+                .antMatchers("/doctor/**").hasRole("DOCTOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

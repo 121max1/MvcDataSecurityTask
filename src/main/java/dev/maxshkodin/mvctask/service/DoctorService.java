@@ -18,4 +18,6 @@ public interface DoctorService {
     Doctor getById(int id);
 
     List<Doctor> getAll();
+
+    Doctor getDoctorByUsername(String username);
 }

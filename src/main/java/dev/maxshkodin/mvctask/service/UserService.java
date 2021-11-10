@@ -6,10 +6,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public interface UserService extends UserDetailsService {
 
-    public void registerUser(User user, boolean isAdmin) throws  Exception;
+    void registerUser(User user, boolean isAdmin) throws  Exception;
 
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+    UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
 }

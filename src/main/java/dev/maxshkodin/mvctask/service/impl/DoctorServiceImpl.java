@@ -42,4 +42,9 @@ public class DoctorServiceImpl implements DoctorService {
     public List<Doctor> getAll() {
         return doctorRepository.findAll();
     }
+
+    @Override
+    public Doctor getDoctorByUsername(String username) {
+        return  doctorRepository.findAll().stream().filter(d->d.getLogin().equals(username)).findFirst().orElse(null);
+    }
 }

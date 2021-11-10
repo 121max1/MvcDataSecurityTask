@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Component
 @Transactional
@@ -29,6 +32,16 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public Appointment getById(int id) {
         return  appointmentRepository.getOne(id);
+    }
+
+    @Override
+    public List<Appointment> getByClientId(int id) {
+        return appointmentRepository.findAll().stream().filter(a->a.getRecord().getClient().getId() == id).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Appointment> getByDoctorId(int id) {
+        return appointmentRepository.findAll().stream().filter(a->a.getRecord().getDoctor().getId() == id).collect(Collectors.toList());
     }
 
 

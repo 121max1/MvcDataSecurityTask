@@ -19,4 +19,7 @@ public interface ClientService {
 
     List<Client> getAll();
 
+    Client getClientByUsername(String username);
+
+
 }

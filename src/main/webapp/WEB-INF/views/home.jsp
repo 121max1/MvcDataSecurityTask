@@ -12,20 +12,24 @@
 </head>
 <body>
 <div>
-    <h1>MVC Task</h1>
+    <h1>Welcome to our hospital website</h1>
 </div>
-
+<p>Please register or login to continue</p>
 <div>       <!-- content -->
     <div>    <!-- buttons holder -->
-        <button onclick="location.href='register/client'">Register client</button>
+        <button onclick="location.href='register/client'">Register as client</button>
         <br>
-        <button onclick="location.href='register/doctor'">Register doctor</button>
+        <button onclick="location.href='register/doctor'">Register as doctor</button>
         <br>
-        <button onclick="location.href='register/admin'">Register admin</button>
+        <button onclick="location.href='register/administrator'">Register as admin</button>
         <br>
-        <button onclick="location.href='clients'">Get clients</button>
+        <button onclick="location.href='administrator/adminMainPage'">Go to admin's page</button>
         <br>
-        <button onclick="location.href='doctors'">Get doctors</button>
+        <button onclick="location.href='client/clientMainPage'">Go to client's page</button>
+        <br>
+        <button onclick="location.href='doctor/doctorMainPage'">Go to doctor's page</button>
+        <br>
+        <button onclick="location.href='login'">Login</button>
     </div>
 </div>
 </body>

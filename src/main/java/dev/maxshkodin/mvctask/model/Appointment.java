@@ -12,7 +12,7 @@ public class Appointment {
 
     private String description;
 
-    @OneToOne(mappedBy = "appointment")
+    @OneToOne(mappedBy = "appointment", cascade=CascadeType.ALL)
     private Record record;
 
     @Enumerated(EnumType.STRING)

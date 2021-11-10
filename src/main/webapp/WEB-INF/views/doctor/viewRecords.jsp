@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Максим
-  Date: 14.10.2021
-  Time: 13:48
+  Date: 09.11.2021
+  Time: 20:58
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -10,7 +10,7 @@
 <%@ page isELIgnored="false"%>
 <html>
 <head>
-    <title>Doctors</title>
+    <title>Records</title>
     <style>
         table {
             font-family: arial, sans-serif;
@@ -32,25 +32,15 @@
 <body>
 <table>
     <tr>
-        <th>Id</th>
-        <th>Full name</th>
-        <th>Phone number</th>
-        <th>Email</th>
-        <th>Login</th>
-        <th>Password</th>
-        <th>Speciality</th>
+        <th>Patient</th>
+        <th>Date and time</th>
     </tr>
-    <c:forEach var="doctor" items="${doctorsList}">
+    <c:forEach var="record" items="${records}">
         <tr>
-            <td>${doctor.id}</td>
-            <td>${doctor.fullName}</td>
-            <td>${doctor.phoneNumber}</td>
-            <td>${doctor.email}</td>
-            <td>${doctor.login}</td>
-            <td>${doctor.password}</td>
-            <td>${doctor.speciality}</td>
+            <td>${record.client.fullName}</td>
+            <td>${record.recordDateTime}</td>
         </tr>
     </c:forEach>
 </table>
+<button onclick="location.href='doctorMainPage'">back</button>
 </body>
-</html>

@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Component
+@Service
 @Transactional
 public class RecordServiceImpl implements RecordService {
 
@@ -111,5 +111,10 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public List<Record> getRecordsByClient(Client client) {
         return recordRepository.findAll().stream().filter(r->r.getClient().getId() == client.getId()).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Record> getRecordsByDoctor(Doctor doctor) {
+        return recordRepository.findAll().stream().filter(r->r.getDoctor().getId() == doctor.getId()).collect(Collectors.toList());
     }
 }

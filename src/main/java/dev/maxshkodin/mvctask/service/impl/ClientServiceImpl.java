@@ -42,4 +42,9 @@ public class ClientServiceImpl implements ClientService {
     public List<Client> getAll() {
         return clientRepository.findAll();
     }
+
+    @Override
+    public Client getClientByUsername(String username) {
+        return clientRepository.findAll().stream().filter(c->c.getLogin().equals(username)).findFirst().orElse(null);
+    }
 }

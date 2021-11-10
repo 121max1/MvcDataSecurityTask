@@ -1,9 +1,7 @@
 package dev.maxshkodin.mvctask.service;
 
-import dev.maxshkodin.mvctask.model.Client;
-import dev.maxshkodin.mvctask.model.Doctor;
+import dev.maxshkodin.mvctask.model.*;
 import dev.maxshkodin.mvctask.model.Record;
-import dev.maxshkodin.mvctask.model.Speciality;
 import org.springframework.stereotype.Service;
 
 import java.util.GregorianCalendar;
@@ -28,5 +26,7 @@ public interface RecordService {
     void delete(Record record);
 
     List<Record> getRecordsByClient(Client client);
+
+    List<Record> getRecordsByDoctor(Doctor doctor);
 
 }

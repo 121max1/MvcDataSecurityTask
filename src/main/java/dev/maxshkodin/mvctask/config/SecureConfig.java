@@ -37,7 +37,7 @@ public class SecureConfig {
     @Bean
     public RoleHierarchy roleHierarchy() {
         RoleHierarchyImpl roleHierarchy = new RoleHierarchyImpl();
-        String hierarchy = "ROLE_ADMIN > ROLE_DOCTOR ROLE_DOCTOR > ROLE_CLIENT";
+        String hierarchy = "ROLE_ADMIN > ROLE_DOCTOR ROLE_ADMIN > ROLE_CLIENT ROLE_DOCTOR=ROLE_CLIENT";//TODO:Check
         roleHierarchy.setHierarchy(hierarchy);
 
         return roleHierarchy;
